@@ -79,7 +79,7 @@ docker run -d --name server-nginx --health-cmd="curl http://localhost" --health-
 ## estado de salud healthy
 <img width="939" height="845" alt="image" src="https://github.com/user-attachments/assets/17bb06ec-8d96-4c28-bb7b-4c3b653a228c" />
 
-## detalle de los chequeos
+## health: starting
 <img width="940" height="847" alt="image" src="https://github.com/user-attachments/assets/1f5e7cb9-d081-4337-98e7-46781456ff20" />
 
 ## caso “unhealthy”
