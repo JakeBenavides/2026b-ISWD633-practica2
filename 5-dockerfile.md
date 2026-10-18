@@ -57,13 +57,24 @@ No olvides verificar en qué directorio se encuentra el archivo Dockerfile
 ```
 
 **¿Cuántos pasos se han ejecutado?**
-# RESPONDER 
+##### Se ejecutaron 5 pasos de construcción ([1/5] a [5/5]). Corresponden a las instrucciones FROM, los tres RUN y COPY; EXPOSE y CMD solo agregan metadatos a la imagen y BuildKit no los numera. El Dockerfile tiene 7 instrucciones en total.
+
+<img width="938" height="850" alt="image" src="https://github.com/user-attachments/assets/8b5bf938-f97f-43af-b2f0-bf2f3a068d0f" />
+
 
 ### Inspeccionar la imagen creada
-# COMPLETAR CON UNA CAPTURA
+<img width="941" height="849" alt="image" src="https://github.com/user-attachments/assets/b6e5e355-48de-41d7-b3e3-cf1c230519fc" />
+
+<img width="941" height="848" alt="image" src="https://github.com/user-attachments/assets/50cdbbe2-7838-498b-b51e-de5a06925e6f" />
+
+
 
 **Modificar el archivo index.html para incluir su nombre y luego crear una nueva versión de la imagen anterior**
 **¿Cuántos pasos se han ejecutado? ¿Observa algo diferente en la creación de la imagen**
+##### Se ejecutaron los mismos 5 pasos, pero el sed, el yum update y el yum install aparecen como CACHED: Docker reutilizó esas capas porque no cambiaron. Solo se ejecutó de nuevo el COPY, ya que index.html fue modificado.
+
+<img width="940" height="849" alt="image" src="https://github.com/user-attachments/assets/fdf58320-2e1e-44fd-9487-d777af39abfa" />
+
 
 ## Mecanismo de caché
 Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso de construcción y evitar la repetición de pasos que no han cambiado. Cada instrucción en un Dockerfile crea una capa en la imagen final. Docker intenta reutilizar las capas de una construcción anterior si no han cambiado, lo que reduce significativamente el tiempo de construcción.
@@ -73,16 +84,22 @@ Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso
 - Instrucción COPY y ADD: Si los archivos copiados no han cambiado, Docker reutiliza la capa de caché correspondiente.
 ![mapeo](img/dockerfile-cache.PNG)
 
+<img width="1589" height="834" alt="image" src="https://github.com/user-attachments/assets/01d64398-1b8e-456b-a9ce-532fd5541d1f" />
 ### Crear un contenedor a partir de las imagen creada, mapear todos los puertos
 ```
-
+docker run -d --name server-apache -P imagen-apache:1.1
 ```
 
+
 ### ¿Con que puerto host se está realizando el mapeo?
-# COMPLETAR CON LA RESPUESTA
+##### Con el puerto 32768, asignado aleatoriamente por Docker al usar -P. Apunta al puerto 80 del contenedor, el declarado con EXPOSE 80.
+
+<img width="1589" height="834" alt="image" src="https://github.com/user-attachments/assets/01d64398-1b8e-456b-a9ce-532fd5541d1f" />
+
+<img width="942" height="850" alt="image" src="https://github.com/user-attachments/assets/d235260f-b5bd-4dbe-b52c-8757c26578f3" />
 
 **¿Qué es una imagen huérfana?**
-# COMPLETAR CON LA RESPUESTA
+##### Es una imagen sin nombre ni etiqueta (aparece como <none>:<none>) que no está asociada a ningún tag. Suele quedar cuando se reconstruye una imagen con el mismo nombre y tag: el tag pasa a la imagen nueva y la anterior queda huérfana (dangling)
 
 ### Identificar imágenes huérfanas
 ```
