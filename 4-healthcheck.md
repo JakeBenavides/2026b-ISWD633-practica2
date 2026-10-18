@@ -73,9 +73,14 @@ Define un período de gracia inicial durante el cual los fallos del Healthcheck 
 ### Ejemplo
 _Puedes copiar y ejecutar directamente el comando_
 
-<img width="939" height="845" alt="image" src="https://github.com/user-attachments/assets/17bb06ec-8d96-4c28-bb7b-4c3b653a228c" />
-
-
 ```
 docker run -d --name server-nginx --health-cmd="curl http://localhost" --health-interval=3s --health-start-period=5s --health-retries=3 --health-timeout=10s nginx:alpine
 ```
+## estado de salud healthy
+<img width="939" height="845" alt="image" src="https://github.com/user-attachments/assets/17bb06ec-8d96-4c28-bb7b-4c3b653a228c" />
+
+## detalle de los chequeos
+<img width="940" height="847" alt="image" src="https://github.com/user-attachments/assets/1f5e7cb9-d081-4337-98e7-46781456ff20" />
+
+## caso “unhealthy”
+<img width="940" height="849" alt="image" src="https://github.com/user-attachments/assets/d6956819-d1e6-4bff-9b16-49a8c582b339" />
